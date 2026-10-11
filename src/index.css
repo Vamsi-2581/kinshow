@@ -901,6 +901,10 @@ main#content {
   border-color: var(--accent-hover);
   transform: translateY(-1px);
 }
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
 .btn--secondary {
   background: var(--surface);
   border: 1px solid var(--border-strong);
