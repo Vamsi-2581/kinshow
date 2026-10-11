@@ -24,8 +24,8 @@ export default function CookieConsent() {
           <p>We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking "Accept", you consent to our use of cookies. <a href="/privacy"><b><u>Learn More</u></b></a></p>
         </div>
         <div className="cookie-actions">
-          <button className="cookie-btn cookie-btn--accept" onClick={handleAccept}>Accept</button>
-          <button className="cookie-btn cookie-btn--decline" onClick={handleDecline}>Decline</button>
+          <button className="btn btn--primary" onClick={handleAccept}>Accept</button>
+          <button className="btn btn--secondary" onClick={handleDecline}>Decline</button>
         </div>
       </div>
     </div>

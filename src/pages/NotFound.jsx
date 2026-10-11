@@ -13,7 +13,7 @@ function NotFound() {
           or maybe it went on vacation.
         </p>
 
-        <Link to="/" className="home-btn">
+        <Link to="/" className="btn btn--primary">
           ← Back to Home
         </Link>
       </div>
