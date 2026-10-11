@@ -272,25 +272,25 @@ export default function Player() {
       {resuming && (
         <div className="player-resume">
           <span className="player-resume-text">Continue watching <strong>{title}{isTV ? ` — ${fmtEp(sn, ep)}` : ''}</strong></span>
-          <Link className="btn btn--ghost" to={detailPath}>Details</Link>
-          <button className="btn btn--ghost" onClick={() => setResuming(false)}>Dismiss</button>
+          <Link className="btn btn--ghost btn--sm" to={detailPath}>Details</Link>
+          <button className="btn btn--ghost btn--sm" onClick={() => setResuming(false)}>Dismiss</button>
         </div>
       )}
 
       <div className="player-header">
-        <button className="btn btn--ghost" onClick={() => navigate(-1)}>← Back</button>
+        <button className="btn btn--ghost btn--sm" onClick={() => navigate(-1)}>← Back</button>
         <h2 className="player-title">{title}{isTV ? ` — ${fmtEp(sn, ep)}` : ''}</h2>
         <div className="player-header-actions">
-          <button className={`btn btn--ghost ${copied ? 'btn-copied' : ''}`} onClick={copyShare}>
+          <button className={`btn btn--ghost btn--sm ${copied ? 'btn-copied' : ''}`} onClick={copyShare}>
             {copied ? '✓ Copied!' : 'Share'}
           </button>
-          <button className="btn btn--ghost" onClick={() => setHelpOpen(true)} aria-label="Keyboard shortcuts">? Shortcuts</button>
+          <button className="btn btn--ghost btn--sm" onClick={() => setHelpOpen(true)} aria-label="Keyboard shortcuts">? Shortcuts</button>
         </div>
       </div>
 
       <div className="player-servers">
         {SERVERS.map((sv, i) => (
-          <button key={sv.id} className={`player-server-btn ${i === server ? 'player-server-btn--active' : ''}`} onClick={() => switchServer(i)}>
+          <button key={sv.id} className={`btn btn--sm ${i === server ? 'btn--primary' : 'btn--secondary'}`} aria-pressed={i === server} onClick={() => switchServer(i)}>
             {sv.name}
           </button>
         ))}
@@ -313,10 +313,10 @@ export default function Player() {
               ))}
             </select>
           )}
-          <button className="btn btn--ghost" disabled={sn <= 1 && ep <= 1} onClick={() => goEp(ep > 1 ? ep - 1 : 1, ep > 1 ? sn : Math.max(1, sn - 1))}>← Prev</button>
+          <button className="btn btn--ghost btn--sm" disabled={sn <= 1 && ep <= 1} onClick={() => goEp(ep > 1 ? ep - 1 : 1, ep > 1 ? sn : Math.max(1, sn - 1))}>← Prev</button>
           <span className="player-ep-label">{fmtEp(sn, ep)}</span>
-          <button className="btn btn--ghost" onClick={() => goEp(ep + 1, sn)}>Next →</button>
-          <button className={`btn btn--ghost player-ep-toggle ${pickerOpen ? 'player-ep-toggle--active' : ''}`} onClick={() => setPickerOpen(v => !v)}>
+          <button className="btn btn--ghost btn--sm" onClick={() => goEp(ep + 1, sn)}>Next →</button>
+          <button className={`btn btn--ghost btn--sm player-ep-toggle ${pickerOpen ? 'player-ep-toggle--active' : ''}`} onClick={() => setPickerOpen(v => !v)}>
             {pickerOpen ? 'Hide Episodes' : 'Episodes'}
           </button>
         </div>

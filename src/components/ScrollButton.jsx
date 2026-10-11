@@ -25,7 +25,7 @@ function ScrollButton() {
   }
   return (
         <button
-          className={`btn--icon scroll-to-top-btn ${isVisible ? 'scroll-to-top-btn--visible' : ''}`}
+          className={`btn btn--primary btn--icon scroll-to-top-btn ${isVisible ? 'scroll-to-top-btn--visible' : ''}`}
           onClick={() => handleScroll()}
           aria-label="Scroll to top"
         >

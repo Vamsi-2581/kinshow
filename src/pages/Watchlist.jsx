@@ -76,7 +76,7 @@ export default function Watchlist() {
                 <span className="watchlist-title">{item.title}</span>
                 <span className="watchlist-meta">{type === 'movie' ? 'Film' : 'Series'}</span>
               </div>
-              <button className="watchlist-remove" onClick={e => { e.preventDefault(); removeItem(item); }} aria-label={`Remove ${item.title}`}>✕</button>
+              <button className="btn btn--danger btn--icon btn--sm watchlist-remove" onClick={e => { e.preventDefault(); removeItem(item); }} aria-label={`Remove ${item.title}`}>✕</button>
             </Link>
           );
         })}
