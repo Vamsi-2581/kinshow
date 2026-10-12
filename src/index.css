@@ -1963,7 +1963,6 @@ main#content {
 .player-season-select:hover { background: var(--surface-hover); }
 .player-season-select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 .player-ep-toggle { position: absolute; right: 24px; top: 50%; transform: translateY(-50%); }
-.player-ep-toggle--active { background: var(--surface-hover); color: var(--text); }
 
 .player-container {
   width: min(calc(100% - 48px), max(480px, calc((100vh - 252px) * 16 / 9)));

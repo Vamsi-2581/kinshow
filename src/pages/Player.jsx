@@ -317,7 +317,7 @@ export default function Player() {
           <Button variant="ghost" className="btn--sm" disabled={sn <= 1 && ep <= 1} onClick={() => goEp(ep > 1 ? ep - 1 : 1, ep > 1 ? sn : Math.max(1, sn - 1))}>← Prev</Button>
           <span className="player-ep-label">{fmtEp(sn, ep)}</span>
           <Button variant="ghost" className="btn--sm" onClick={() => goEp(ep + 1, sn)}>Next →</Button>
-          <Button variant="ghost" className={`btn--sm player-ep-toggle ${pickerOpen ? 'player-ep-toggle--active' : ''}`} onClick={() => setPickerOpen(v => !v)}>
+          <Button variant={pickerOpen ? 'secondary' : 'ghost'} className="btn--sm player-ep-toggle" aria-expanded={pickerOpen} onClick={() => setPickerOpen(v => !v)}>
             {pickerOpen ? 'Hide Episodes' : 'Episodes'}
           </Button>
         </div>

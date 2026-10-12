@@ -12,6 +12,7 @@ function ScrollButton() {
         setIsVisible(false);
       }
     }
+    scrollY();
     window.addEventListener("scroll", scrollY);
     return function () {
       window.removeEventListener("scroll", scrollY);

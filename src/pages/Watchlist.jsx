@@ -1,5 +1,5 @@
 import Button from '../components/Button';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useWatchlist } from '../store';
 import { useToast } from '../components/Toast';
@@ -11,16 +11,27 @@ export default function Watchlist() {
   const toast = useToast();
   const [filter, setFilter] = useState('all');
   const [sort, setSort] = useState('recent');
-  const [removingId, setRemovingId] = useState(null);
+  const [removingIds, setRemovingIds] = useState(() => new Set());
+  const removalTimers = useRef(new Map());
+
+  useEffect(() => {
+    const timers = removalTimers.current;
+    return () => {
+      timers.forEach(clearTimeout);
+      timers.clear();
+    };
+  }, []);
 
   const filtered = list
     .filter(i => filter === 'all' || i.type === filter)
     .sort((a, b) => sort === 'title' ? (a.title || '').localeCompare(b.title || '') : (b.added || 0) - (a.added || 0));
 
   const removeItem = (item) => {
+    if (removalTimers.current.has(item.id)) return;
     const originalIndex = list.findIndex(i => i.id === item.id);
-    setRemovingId(item.id);
-    setTimeout(() => {
+    setRemovingIds(ids => new Set([...ids, item.id]));
+    const timer = setTimeout(() => {
+      removalTimers.current.delete(item.id);
       remove(item.id); 
       toast(`${item.title} removed from My List`, {
         duration: 5000,
@@ -29,8 +40,13 @@ export default function Watchlist() {
           onClick: () => restore(item, originalIndex)
         }
       });
-      setRemovingId(null);
+      setRemovingIds(ids => {
+        const next = new Set(ids);
+        next.delete(item.id);
+        return next;
+      });
     }, 300);
+    removalTimers.current.set(item.id, timer);
   };
 
   if (list.length === 0) {
@@ -66,7 +82,7 @@ export default function Watchlist() {
       <div className="watchlist-grid">
         {filtered.map(item => {
           const type = item.type || item.media_type || 'movie';
-          const isRemoving = removingId === item.id;
+          const isRemoving = removingIds.has(item.id);
           return (
 
             <div key={item.id} className={`watchlist-item ${isRemoving ? 'watchlist-item--removing' : ''}`}>
