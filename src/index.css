@@ -864,10 +864,6 @@ main#content {
   .hero-desc {
     display: none;
   }
-  .hero-actions .btn {
-    padding: 9px 14px;
-    font-size: 13px;
-  }
   .hero-progress {
     margin-top: 18px;
   }
@@ -890,6 +886,12 @@ main#content {
   line-height: 1.2;
   transition: all var(--duration) var(--ease);
   white-space: nowrap;
+}
+@media (max-width: 640px) {
+  .btn:not(.btn--sm):not(.btn--icon) {
+    padding: 9px 14px;
+    font-size: 13px;
+  }
 }
 .btn:disabled {
   opacity: 0.5;
@@ -964,12 +966,14 @@ main#content {
   bottom: 24px;
   right: 24px;
   z-index: 400;
+  visibility: hidden;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease;
 }
 
 .scroll-to-top-btn.scroll-to-top-btn--visible {
+  visibility: visible;
   opacity: 1;
   pointer-events: auto;
 }
@@ -2124,6 +2128,7 @@ main#content {
     background var(--duration) var(--ease);
   animation: watchlistIn 0.2s var(--ease);
 }
+.watchlist-link { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
 .watchlist-item:hover { border-color: var(--border-strong); background: var(--surface-hover); }
 .watchlist-poster { width: 100%; aspect-ratio: 2/3; border-radius: 0; overflow: hidden; background: var(--bg-raised); outline: 2px solid transparent; outline-offset: -2px; transition: outline-color var(--duration) var(--ease); }
 .watchlist-item:hover .watchlist-poster { outline-color: #00e054; }

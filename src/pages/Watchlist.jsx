@@ -1,3 +1,4 @@
+import Button from '../components/Button';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useWatchlist } from '../store';
@@ -40,7 +41,7 @@ export default function Watchlist() {
           <div className="empty-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></div>
           <h3>Your watchlist is waiting</h3>
           <p>Save movies and shows here so you never lose something you want to watch.</p>
-          <Link to="/" className="btn btn--primary">Discover Something</Link>
+          <Button as={Link} to="/" variant="primary">Discover Something</Button>
         </div>
       </main>
     );
@@ -68,16 +69,18 @@ export default function Watchlist() {
           const isRemoving = removingId === item.id;
           return (
 
-            <Link key={item.id} to={`/detail/${type}/${item.id}`} className={`watchlist-item ${isRemoving ? 'watchlist-item--removing' : ''}`} >
-              <div className="watchlist-poster">
-                <PosterImg src={item.poster_path} title={item.title} idx={item.title?.charCodeAt(0)} className="watchlist-poster-img" alt={item.title} />
-              </div>
-              <div className="watchlist-info">
-                <span className="watchlist-title">{item.title}</span>
-                <span className="watchlist-meta">{type === 'movie' ? 'Film' : 'Series'}</span>
-              </div>
-              <button className="btn btn--danger btn--icon btn--sm watchlist-remove" onClick={e => { e.preventDefault(); removeItem(item); }} aria-label={`Remove ${item.title}`}>✕</button>
-            </Link>
+            <div key={item.id} className={`watchlist-item ${isRemoving ? 'watchlist-item--removing' : ''}`}>
+              <Link to={`/detail/${type}/${item.id}`} className="watchlist-link">
+                <div className="watchlist-poster">
+                  <PosterImg src={item.poster_path} title={item.title} idx={item.title?.charCodeAt(0)} className="watchlist-poster-img" alt={item.title} />
+                </div>
+                <div className="watchlist-info">
+                  <span className="watchlist-title">{item.title}</span>
+                  <span className="watchlist-meta">{type === 'movie' ? 'Film' : 'Series'}</span>
+                </div>
+              </Link>
+              <Button type="button" disabled={isRemoving} variant="danger" className="btn--icon btn--sm watchlist-remove" onClick={() => removeItem(item)} aria-label={`Remove ${item.title}`}>✕</Button>
+            </div>
           );
         })}
       </div>

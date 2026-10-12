@@ -1,3 +1,4 @@
+import Button from './Button';
 import { useEffect, useState } from "react";
 
 function ScrollButton() {
@@ -24,8 +25,8 @@ function ScrollButton() {
     });
   }
   return (
-        <button
-          className={`btn btn--primary btn--icon scroll-to-top-btn ${isVisible ? 'scroll-to-top-btn--visible' : ''}`}
+        <Button variant="primary"
+          className={`btn--icon scroll-to-top-btn ${isVisible ? 'scroll-to-top-btn--visible' : ''}`}
           onClick={() => handleScroll()}
           aria-label="Scroll to top"
         >
@@ -42,7 +43,7 @@ function ScrollButton() {
             <line x1="12" y1="19" x2="12" y2="5" />
             <polyline points="5 12 12 5 19 12" />
           </svg>
-        </button>
+        </Button>
   );
 }
 
